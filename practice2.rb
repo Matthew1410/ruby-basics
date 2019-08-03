@@ -7,6 +7,8 @@ puts "The sum of the numbers is:" + sum.to_s
 
 if sum > 100
     puts "The sum is greater than 100"
-else
+elsif sum < 100
     puts "The sum is less than 100"
+else
+    puts "The sum is equal to 100"
 end
