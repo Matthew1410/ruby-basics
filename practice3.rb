@@ -12,3 +12,4 @@ else
 end
 
 puts "There are #{name.length} characters in your name"
+puts "Reversed, your name is #{name.reverse.capitalize}"
