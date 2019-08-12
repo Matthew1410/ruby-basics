@@ -2,14 +2,6 @@
 print "Enter a number: "
 num = gets.to_i
 
-one_thousand = "M"
-five_hundred = "D"
-one_hundred = "C"
-fifty = "L"
-ten = "X"
-five = "V"
-one = "I"
-
 if num > 1000
   thousands = num / 1000
   num %= 1000
