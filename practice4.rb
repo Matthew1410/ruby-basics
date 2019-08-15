@@ -1,72 +1,70 @@
-
 print "Enter a number: "
 num = gets.to_i
 
-if num > 1
 #thousands
 
-if num > 1000
-  thousands = num / 1000
-  num %= 1000
-  thousands = "M" * thousands
+thousands = num / 1000
+if thousands >= 1
+  roman_thousand = "M" * thousands
+else
+  roman_thousand = ""
 end
+
+num %= 1000
 
 #hundreds
 
-if num > 100 && num < 500
-  hundreds = num / 100
-  num %= 100
-  hundreds = "C"
+hundreds = num / 100
+if hundreds >= 1 && hundreds < 4
+  roman_hundreds = "C" * hundreds
+elsif hundreds == 4
+  roman_hundreds = "CD"
+elsif hundreds == 5
+  roman_hundreds = "D"
+elsif hundreds >= 6 && hundreds < 9
+  hundreds -= 5
+  six_hundred = "C" * hundreds
+  roman_hundreds = "D" + six_hundred
+elsif hundreds == 9
+  roman_hundreds = "CM"
 end
 
-if num > 500 && num < 1000
-  hundreds = num / 100
-  num %= 100
-  hundreds = "D"
-end
+num %= 100
 
 #tens
 
-if num > 50 && num < 100
-  tens = num / 10
-  num %= 10
-  tens = "L"
-elsif num >= 10 && num <= 30
-  tens = num / 10
-  tens = "X" * tens
-elsif num == 40
-  tens = num / 10
-  tens = "LX"
-elsif num > 40 && num <= 43
-  tens = num / 10
-  tens = "LX"
+tens = num / 10
+if tens >= 1 && tens < 4
+  roman_tens = "X" * tens
+elsif tens == 4
+  roman_tens = "XL"
+elsif tens == 5
+  roman_tens = "L"
+elsif tens >= 6 && tens < 9
+  tens -= 5
+  six_tens = "X" * tens
+  roman_tens = "L" + six_tens
+elsif tens == 9
+  roman_tens = "XC"
 end
+
+num %=10
 
 #ones
 
-if num >= 1 && num <= 3
-  ones = num / 1
-  ones = "I" * ones
-elsif num == 4
-  ones = num / 1
-  ones = "IV"
-elsif num == 5
-  ones = num / 1
-  ones = "V"
-elsif num >= 6 && num <= 8
-  ones = num / 1
-  num = ones - 5
-  ones = "V" + ("I" * num)
-elsif num == 9
-  ones = num / 1
-  ones = "IX"
-elsif num > 10 && num <= 13
-  ones = num / 1
-  ones = "I" * ones
+ones = num 
+if ones >= 1 && ones < 4
+  roman_ones = "I" * ones
+elsif ones == 4
+  roman_ones = "IV"
+elsif ones == 5
+  roman_ones = "V"
+elsif ones >= 6 && ones < 9
+  ones -= 5
+  six_ones = "I" * ones
+  roman_ones = "V" + six_ones
+elsif ones == 9
+  roman_hundreds = "IX"
 end
 
-puts "Converted to Roman Numerals: #{thousands.to_s + hundreds.to_s + tens.to_s + ones.to_s} "
-
-else
-  puts "You input an invalid number."
-end
+puts "Converted to: #{roman_thousand.to_s + roman_hundreds.to_s + roman_tens.to_s + roman_ones.to_s}"
