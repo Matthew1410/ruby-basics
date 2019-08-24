@@ -1,8 +1,13 @@
 def military_to_12_hour_time(military_time)
-  return unless military_time < 2400 && military_time.positive?
+  return if military_time >= 2400 && military_time.negative?
 
   hours = military_time / 100
   minutes = military_time % 100
+  hours = case hours
+          when 0, 12 then 12
+          when 1..11 then hours
+          when 12..23 then hours % 12
+          end
   "#{hours}:#{minutes}"
 end
 
