@@ -1,6 +1,5 @@
-
 def military_to_12_hour_time(military_time)
-  return if military_time >= 2400 && military_time.negative?
+  raise ArgumentError if military_time >= 2400 || military_time.negative?
 
   hours = military_time / 100
   minutes = military_time % 100
@@ -14,9 +13,9 @@ def military_to_12_hour_time(military_time)
 end
 
 print "24 hour format time: "
-normal_time = military_to_12_hour_time(Integer(gets))
-if normal_time
+begin
+  normal_time = military_to_12_hour_time(Integer(gets))
   puts "The 12 hour format is: #{normal_time}"
-else
+rescue ArgumentError
   puts "The time you entered is invalid."
 end
