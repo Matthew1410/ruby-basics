@@ -1,19 +1,33 @@
 class Dice
-  def initial(number_of_sides)
-    sides = number_of_sides
+  def initialize(sides)
+    @sides = sides
   end
 
-  def roll(number_of_rolls)
-    times_rolled = number_of_rolls
-    rand(number_of_rolls) + 1
+  def generate_dice_roll
+    rand(@sides) + 1
+  end
+
+  def roll(number=1)
+    roll_array = []
+    number.times do
+      roll_array << generate_dice_roll
+    end
+    total = 1
+    roll_array.each do |roll|
+      new_total = total + roll
+      total = new_total
+    end
+    total
   end
 end
 
-print "Choose number of sides (6, 8, 10, 20): "
-  number_sides = initial(Integer(gets.to_i))
+SIX_SIDED_DICE = Dice.new(6)
+EIGHT_SIDED_DICE = Dice.new(8)
+TEN_SIDED_DICE = Dice.new(10)
+TWENTY_SIDED_DICE = Dice.new(20)
 
-print "Enter number of rolls: "
-    number_rolls = roll(gets.to_i)
+puts "We're rolling a six sided die!"
+puts SIX_SIDED_DICE.roll
 
-puts "You picked #{number_sides} sides!"
-puts "You rolled #{number_rolls} times!"
+puts "Now we're rolling two 20 sided die twice!"
+puts TWENTY_SIDED_DICE.roll(2)
