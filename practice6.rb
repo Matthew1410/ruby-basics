@@ -7,8 +7,21 @@ class Dice
     @rolls = num_of_rolls
   end
 
-  def play
-    @sides * @rolls
+  def generate_dice_roll
+    rand(@sides) + 1
+  end
+
+  def play(num_of_rolls)
+    roll_array = []
+    num_of_rolls.times do
+      roll_array << generate_dice_roll
+    end
+    total = 1
+    roll_array.each do |roll|
+      new_total = total + roll
+      total = new_total
+    end
+    total
   end
 end
 
@@ -21,4 +34,4 @@ output = Dice.new
 
 puts "The number of sides is #{output.initial(num_of_sides)}"
 puts "The number of rolls is #{output.roll(num_of_rolls)}"
-print "You rolled #{output.play} using ", output.roll(num_of_rolls), " ", output.initial(num_of_sides), "-sided dice"
+print "You rolled #{output.play(num_of_rolls)} using ", output.roll(num_of_rolls), " ", output.initial(num_of_sides), "-sided dice"
