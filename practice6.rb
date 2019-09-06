@@ -8,8 +8,7 @@ class Dice
   end
 
   def play
-    result = @sides * @rolls
-    puts "You rolled #{result} "
+    @sides * @rolls
   end
 end
 
@@ -22,4 +21,4 @@ output = Dice.new
 
 puts "The number of sides is #{output.initial(num_of_sides)}"
 puts "The number of rolls is #{output.roll(num_of_rolls)}"
-print output.play
+print "You rolled #{output.play} using ", output.roll(num_of_rolls), " ", output.initial(num_of_sides), "-sided dice"
