@@ -17,3 +17,8 @@ class Dice
     total_roll
   end
 end
+
+puts "Enter number of sides: "
+number_of_sides = gets.chomp
+puts "Enter number of rolls: "
+number_of_rolls = gets.chomp
